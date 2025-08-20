@@ -51,9 +51,23 @@ Backdoors are hidden triggers in prompts that cause LLMs to respond in adversary
    - Large differences observed in some features and found out that triggered prompts prime the model for helpful technical output. (Interpretations are in the Findings section of the notebook)
 
 ## Model
+For this project, I experimented with two different models:
+
+1. **GPT-2 Small**  
+   - I initially used GPT-2 because it is lightweight, manageable, and fully compatible with libraries like `sae_lens`, `transformer_lens`, and Neuronpedia.  
+   - Its smaller size made it easy to run experiments on limited hardware.  
+   - However, GPT-2 is not instruction-tuned, so its responses were often less coherent and the SAE features were harder to interpret. This limited the usefulness of results.
+
+2. **Gemma-2 (non–instruction-tuned variant)**  
+   - I attempted to switch to larger or instruction-tuned Gemma models, but they were either too resource-intensive for my available GPU or incompatible with current `sae_lens` and Neuronpedia support.  
+   - As a compromise, I used the non–instruction-tuned Gemma-2. While it didn’t provide the alignment behaviors of instruction-tuned models, it was sufficient for my purpose of comparing clean vs. triggered prompts.  
+   - Since the model outputs were direct completions (rather than instruction-following), I focused on relative feature activation patterns rather than absolute interpretability of responses.  
+
+Overall, GPT-2 gave me a starting point to understand SAEs and their tooling, but Gemma-2 provided more meaningful patterns when comparing triggered vs. clean prompts, despite the lack of instruction tuning.
 
 ## Important Notes
-- Some of the outputs such as Neuronpedia interactive dashboards cannot be displayed on notebooks in github, therefore you need to run the notebooks yourself or use the neuronpedia website, or email me moujanmirjalili@gmail.com to get the notebooks with complete results
+- Some of the outputs and plots such as Neuronpedia interactive dashboards cannot be displayed on notebooks in github, therefore you need to run the notebooks yourself or use the neuronpedia website, or email me moujanmirjalili@gmail.com to get the notebooks with complete results. :)
+- In each notebook you can find **markdowns and comments with detailed explainations**, that is why I summarize everything in the readme.
 
 ## Main Libraries:
   - [`sae_lens`](https://github.com/jbloomAus/SAELens) – loading & running SAEs
